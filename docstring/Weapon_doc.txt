@@ -1,0 +1,72 @@
+ĐƯỜNG DẪN GỐC: C:\Users\LONG NHAT\top-down\DesAllDemons\DesAllDemons\DesAllDemons\_internal\Weapon.py
+============================================================
+
+MODULE DOCSTRING:
+Không có
+
+----------------------------------------
+
+CLASSES DOCSTRINGS:
+  [Weapon]:
+Lớp cơ sở (Base Class) định nghĩa cấu trúc của một vũ khí chung.
+Gồm tham chiếu thời điểm xả đạn (Cooldown Management) và hàm bắn trừu tượng.
+
+  [Pistol]:
+Súng lục (Pistol) - Vũ khí mặc định, cấp 1.
+Bắn ra một tia đạn đơn, nhịp độ xả súng vừa phải và có độ chính xác tuyến tính 100%.
+Dùng cho các mục tiêu đơn mục tiêu tầm xa.
+
+Attributes:
+    weaponCooldown (int): Chu kỳ dãn cách tối thiểu giữa 2 lần khai hỏa (250ms).
+
+  [Shotgun]:
+Súng Hoa cải / Súng Đoản (Shotgun) - Vũ khí cấp 2.
+Phóng ra một lượng lớn hạt đạn kim quạt đa điểm cùng một lúc.
+Sát thương hủy diệt ở điểm chạm gần nhưng Cooldown nạp đạn lại rất chậm trễ.
+
+Attributes:
+    weaponCooldown (int): Cooldown thời gian nghỉ ngắt quãng giữa các làn khói (750ms).
+    spreadArc (int): Độ mở rộng của góc Quạt tản đạn (Đo bằng góc độ 90).
+    projectilesCount (int): Số lượng hạt văng mảnh xuất trảo song song.
+
+  [MachineGun]:
+Súng Máy Tự động (Machine Gun) - Vũ khí cấp 3.
+Xả lượng đạn liên thanh tới tấp nhằm càn quét trận địa.
+Kèm tác dụng phụ giật nòng dẫn tới việc quỹ đạo bay của đạn là một biến số nhiễu lộn xộn.
+
+Attributes:
+    weaponCooldown (int): Nhịp độ nhả đạn liên tục cường độ cao (150ms).
+    spreadArc (int): Giới hạn giới biên dao động độ giật nòng hãm (25 độ lệch).
+
+----------------------------------------
+
+FUNCTIONS / METHODS DOCSTRINGS:
+  [Weapon.__init__()]:
+Khởi tạo biến kiểm soát tần suất bắn.
+
+  [Weapon.shoot()]:
+Khung hàm khai hỏa. Yêu cầu các lớp súng cụ thể (Lớp con) phải ghi đè (override) 
+để tạo logic đường đạn tản mát phân biệt.
+
+  [Pistol.__init__()]:
+Không có docstring
+
+  [Pistol.shoot()]:
+Thực thi cơ chế nhả đạn đơn. Tính toán vector hướng chuẩn xác 
+từ vị trí nhân vật vạch trỏ thẳng về điểm ảnh chỉ định của chuột điện tử.
+
+  [Shotgun.__init__()]:
+Không có docstring
+
+  [Shotgun.shoot()]:
+Thực thi xả đạn tản sương cục diện. 
+Mảng đường đạn được rẽ quạt dựa vào hàm quy đổi góc lệch (rotate_vector) 
+chia độ đều theo từng nấc cung Arc cố định.
+
+  [MachineGun.__init__()]:
+Không có docstring
+
+  [MachineGun.shoot()]:
+Phóng đạn liên thanh và cấp ma trận random() vào tham số góc theta để
+phát tác độ rít, độ sai số (Inaccuracy / Recoil Effect) cho dòng đạn bão.
+
