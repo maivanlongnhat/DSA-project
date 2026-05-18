@@ -1,0 +1,54 @@
+ĐƯỜNG DẪN GỐC: C:\Users\LONG NHAT\top-down\DesAllDemons\DesAllDemons\DesAllDemons\_internal\Projectile.py
+============================================================
+
+MODULE DOCSTRING:
+Không có
+
+----------------------------------------
+
+CLASSES DOCSTRINGS:
+  [Particle]:
+Lớp cấu thành các mảnh vụn nhỏ (VFX Particle Effect).
+Sử dụng để nhả các luồng đốm li ti đuổi vệt sáng đằng sau đầu các viên đạn 
+hoặc khi có chấn động đánh bom cực mạnh (Particle explosion).
+Lớp đối tượng được lập trình có chu kì mờ nhạt dần theo thời lượng sống bằng mã Alpha fade out.
+
+Attributes:
+    pos (list): Khoảng không ghi hình giọt hạt vụn nhấp nháy.
+    velocity (tuple[int]): Lực văng dư nén (X,Y) đẩy trôi các hạt bụi ra đằng sau.
+    lifetime (int): Giai doạn Time-to-Live tàn rỗng của mảnh hạt trước dập tắt (MilliSeconds).
+    createdAt (int): Khoảng mốc Timeline Timestamp đính ấn chỉ ngày chào đời đốm nổ để tính vòng Fade.
+
+  [Projectile]:
+Thực thể Đầu Đạn Đại Bác (Đại diện chung cho nhóm Đạn của Người Cầm Trịch lẫn Quái Thú).
+Xác tác quỹ đạo và quán sát đụng dập lên vỏ thân thể quái vật. Phân chia logic tự đùn vệt hạt lửa khói.
+
+Attributes:
+    particles (pygame.sprite.Group): Group chứa tập tàn dư mảnh bụi do đạn bắn rớt lại trên thân luồng sau.
+    speed (float): Tốc lượng gia tốc định biên diệt của viên đạt vút đo lường/ticks.
+    lifetime (int): Số khung giờ mili-giây đạn giới hạn tồn tại để tự phá nát trên đường văng xa ranh.
+    is_player (bool): Tham chiếu Nhãn phe Ta và Địch nhằm loại bỏ rủi ro bắn nhầm phe lính tráng (Friendly Fire Guard).
+
+----------------------------------------
+
+FUNCTIONS / METHODS DOCSTRINGS:
+  [Particle.__init__()]:
+Khởi tạo thực điểm mảnh hạt với vận lượng, quy chế sinh và mã Alpha hòa sương.
+
+  [Particle.update()]:
+Cập nhật chuyển động tịnh tiệm trôi nổi rơi, song song trượt bộ điều chỉnh vặn nhỏ độ mờ ảnh tĩnh Alpha xuống thấp.
+Sẽ tực xóa nát rác đối tượng khỏi bộ nhớ RAM khi kết dứt LifeTime.
+
+Args:
+    tDelta (float): Bộ chỉ số sai biến thời gian (Time Delta) bù đáp lỗi trượt cấu hình khung vi lặp.
+
+  [Projectile.__init__()]:
+Nhả xả ngọn đạn tại một trọng điểm trỏ với Vector đâm đầu nhất định.
+
+  [Projectile.move()]:
+Di dời viên đạn tịnh tiến thẳng theo vector. Đồng thời xử lý rải hạt dư.
+
+Args:
+    surfaceSize (tuple): Cấp hạn chớp dời điểm cự tối đa nới màn để phát nổ đầu đạn khi vượt quá ốc góc độ Camera.
+    tDelta (float): Denta bộ canh nhịp Frame game phòng rủi bị lag FPS.
+

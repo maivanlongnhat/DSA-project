@@ -1,0 +1,42 @@
+ĐƯỜNG DẪN GỐC: C:\Users\LONG NHAT\top-down\DesAllDemons\DesAllDemons\DesAllDemons\_internal\AStar.py
+============================================================
+
+MODULE DOCSTRING:
+Không có
+
+----------------------------------------
+
+FUNCTIONS / METHODS DOCSTRINGS:
+  [init_nav_grid()]:
+Khởi tạo lưới tìm đường (navigation grid) tĩnh để hỗ trợ tính toán phương hướng cho A*.
+Mỗi ô lưu trữ trạng thái Boolean, cho phép đi (True) hoặc bị chặn (False).
+
+Args:
+    obstacles (list[pygame.sprite.Sprite]): Danh sách các chướng ngại vật vật lý trên bản đồ.
+    enemy_radius (float): Bán kính bao quanh kẻ địch. Được sử dụng để tạo một lớp đệm (padding) 
+                          đảm bảo chúng không bị kẹt sát viền hoặc đi xuyên vách đối tượng.
+
+  [heuristic()]:
+Hàm đo lường chi phí (Cost) dự kiến từ điểm đang xét đến mục tiêu.
+Sử dụng công thức khoảng cách Euclide (Đường thẳng nối 2 điểm).
+
+Args:
+    a (tuple[int, int]): Tọa độ (x, y) trên lưới điểm xét duyệt hiện tại.
+    b (tuple[int, int]): Tọa độ (x, y) trên lưới cho điểm đích đến.
+
+Returns:
+    float: Giá trị khoảng cách tuyến tính giữa 2 khu vực.
+
+  [a_star_search()]:
+Triển khai thuật toán định tuyến đồ thị A* (A-Star) thông qua Navigation Grid.
+Từ tọa độ vật lý (pixel), hàm ánh xạ về tọa độ dạng lưới (Mesh Grid), tìm lộ trình 
+có phi chí thấp nhất rồi nội suy ngược trả lại tọa độ pixel.
+
+Args:
+    start_pos (tuple[float, float]): Tọa độ thực của kẻ địch (Gốc xuất phát).
+    goal_pos (tuple[float, float]): Tọa độ thực của Người chơi (Mục tiêu chốt).
+
+Returns:
+    list[tuple[float, float]]: Kết xuất danh sách lộ trình theo tọa độ đồ họa điểm (Pixel Waypoints). 
+                               Nếu bị chặn tắc ngõ, hàm sẽ trả về mảng rỗng [].
+
